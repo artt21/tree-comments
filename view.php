@@ -68,7 +68,7 @@
                     </div>
                     <hr>
                     <div class="comments-reply-button2">
-                        <button onclick="document.getElementById('formreply-1').style.display='';">Reply</button>
+                        <button onclick="document.getElementById('formreply-<?= $child['id']; ?>').style.display='';">Reply</button>
                     </div>
                 </div>
             <?php endforeach; ?>
