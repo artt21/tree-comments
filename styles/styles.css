@@ -1,6 +1,7 @@
 /*
 GENERAL
  */
+
 html {
     scroll-behavior: smooth;
 }
@@ -13,9 +14,11 @@ body{
 h1{
     font-size: 50px;
 }
+
 /*
 HEADER
  */
+
 .navbar{
     display: flex;
     justify-content: center;
@@ -45,15 +48,21 @@ a{
     color: black;
     text-decoration: none;
 }
+
 /*
 POST
  */
+
 .post{
     background-color: #DAEDD0;
     min-height: 200px;
     margin-bottom: 10px;
     margin-left: 200px;
     margin-right: 200px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #DAEDD0;
 }
 .post h2{
     font-size: 36px;
@@ -69,6 +78,7 @@ POST
     margin-right: 20px;
     min-height: 200px;
 }
+
 /*
 COMMENTARIES
  */
@@ -82,30 +92,35 @@ COMMENTARIES
 
 .commentaries .comments-form{
     background-color: #DAEDD0;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #DAEDD0;
+    padding-bottom: 7px;
 }
 
 .commentaries .comments-form .input{
     margin-bottom: 10px;
     margin-top: 10px;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .commentaries .comments-form .textarea{
     margin-bottom: 10px;
     margin-top: 10px;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .commentaries .comments-form .submit{
     margin-top: 10px;
-    margin-left: 10px;
-    padding-bottom: 10px;
+    margin-left: 15px;
+    padding-bottom: 20px;
 }
 
 .commentaries .comments-form h3{
     margin-left: 120px;
     margin-bottom: 10px;
-    padding-top: 7px;
+    padding-top: 0px;
 }
 
 .commentaries .comments-form p{
@@ -115,6 +130,10 @@ COMMENTARIES
 .commentaries .comments{
     margin: 10px;
     background-color: #b9d6a9;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #DAEDD0;
 }
 
 .commentaries .comments .comment-added-by{
@@ -142,6 +161,22 @@ COMMENTARIES
     margin-left: 30px;
     background-color: #DAEDD0;
     margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #DAEDD0;
+}
+
+.commentaries .reply-form2 {
+    margin-left: 45px;
+    background-color: #DAEDD0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #DAEDD0;
 }
 
 .commentaries .comments .comments-reply-button2{
@@ -153,13 +188,33 @@ COMMENTARIES
     padding: 10px;
     background-color: #DAEDD0;
 }
+
+.commentaries .reply-form2 .reply-name{
+    padding: 10px;
+    background-color: #DAEDD0;
+}
+
 .commentaries .reply-form .reply-comment{
     padding-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
     background-color: #DAEDD0;
 }
+
+.commentaries .reply-form2 .reply-comment{
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #DAEDD0;
+}
+
 .commentaries .reply-form .reply-submit{
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.commentaries .reply-form2 .reply-submit{
     padding-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
@@ -167,10 +222,31 @@ COMMENTARIES
 
 .commentaries .reply-comments {
     margin-left: 30px;
+    margin-bottom: 10px;
     background-color: #DAEDD0;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #DAEDD0;
+}
+
+.commentaries .reply-comments2 {
+    margin-left: 45px;
+    margin-bottom: 10px;
+    background-color: #DAEDD0;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #DAEDD0;
 }
 
 .commentaries .reply-comments .comment-added-by{
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.commentaries .reply-comments2 .comment-added-by2{
     margin-left: 10px;
     margin-top: 10px;
     padding-top: 10px;
@@ -181,9 +257,20 @@ COMMENTARIES
     margin-top: 10px;
 }
 
+.commentaries .reply-comments2 .comment-content2{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
 .commentaries .reply-comments .comments-reply-button2{
     margin-left: 930px;
     padding-bottom: 10px;
+}
+
+.commentaries .reply-comments2 .comments-reply-button3{
+    margin-left: 915px;
+    padding-bottom: 10px;
+    margin-top: 25px;
 }
 
 
