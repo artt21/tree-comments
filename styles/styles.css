@@ -90,6 +90,35 @@ COMMENTARIES
     margin-right: 250px;
 }
 
+.commentaries ul{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.commentaries ul ul .comments{
+    background-color: #DAEDD0;
+}
+
+.commentaries ul .comments .comments-reply-button{
+    margin-left: 893px;
+}
+
+.commentaries ul ul .comments .comments-reply-button{
+    margin-left: 853px;
+}
+
+.commentaries ul ul ul .comments .comments-reply-button{
+    margin-left: 813px;
+}
+
+.commentaries ul ul ul ul .comments .comments-reply-button{
+    margin-left: 773px;
+}
+
+.commentaries ul ul ul ul ul .comments .comments-reply-button{
+    margin-left: 723px;
+}
+
 .commentaries .comments-form{
     background-color: #DAEDD0;
     border-style: solid;
@@ -148,17 +177,13 @@ COMMENTARIES
 }
 
 .commentaries .comments .comments-reply-button{
-    margin-left: 930px;
+    margin-left: 800px;
     padding-bottom: 10px;
-}
-
-.footer{
-    padding: 35px;
-    background-color: white;
 }
 
 .commentaries .reply-form {
     margin-left: 30px;
+    margin-right: 30px;
     background-color: #DAEDD0;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -166,30 +191,9 @@ COMMENTARIES
     border-width: 1px;
     border-radius: 5px;
     border-color: #DAEDD0;
-}
-
-.commentaries .reply-form2 {
-    margin-left: 45px;
-    background-color: #DAEDD0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: #DAEDD0;
-}
-
-.commentaries .comments .comments-reply-button2{
-    margin-left: 915px;
-    padding-bottom: 10px;
 }
 
 .commentaries .reply-form .reply-name{
-    padding: 10px;
-    background-color: #DAEDD0;
-}
-
-.commentaries .reply-form2 .reply-name{
     padding: 10px;
     background-color: #DAEDD0;
 }
@@ -201,20 +205,7 @@ COMMENTARIES
     background-color: #DAEDD0;
 }
 
-.commentaries .reply-form2 .reply-comment{
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    background-color: #DAEDD0;
-}
-
 .commentaries .reply-form .reply-submit{
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.commentaries .reply-form2 .reply-submit{
     padding-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
@@ -230,23 +221,7 @@ COMMENTARIES
     border-color: #DAEDD0;
 }
 
-.commentaries .reply-comments2 {
-    margin-left: 45px;
-    margin-bottom: 10px;
-    background-color: #DAEDD0;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 15px;
-    border-color: #DAEDD0;
-}
-
 .commentaries .reply-comments .comment-added-by{
-    margin-left: 10px;
-    margin-top: 10px;
-    padding-top: 10px;
-}
-
-.commentaries .reply-comments2 .comment-added-by2{
     margin-left: 10px;
     margin-top: 10px;
     padding-top: 10px;
@@ -257,20 +232,9 @@ COMMENTARIES
     margin-top: 10px;
 }
 
-.commentaries .reply-comments2 .comment-content2{
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-.commentaries .reply-comments .comments-reply-button2{
-    margin-left: 930px;
-    padding-bottom: 10px;
-}
-
-.commentaries .reply-comments2 .comments-reply-button3{
-    margin-left: 915px;
-    padding-bottom: 10px;
-    margin-top: 25px;
+.footer{
+    padding: 35px;
+    background-color: white;
 }
 
 

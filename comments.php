@@ -16,12 +16,13 @@ function getComments(): array
     while ($comment = $statement->fetch(PDO::FETCH_ASSOC)){
         $comments[$comment['id']] = $comment;
     }
+
     return $comments;
 
 }
 
 /**
- * Sorting out comments to differentiate between parent comments and children
+ * Sorting out comments in array to differentiate between parent comments and children. Making tree structure.
  * @param array $comments
  * @return array
  */
@@ -39,6 +40,81 @@ function sortComments(array $comments): array
     }
 
     return $arr;
+
+}
+
+/**
+ * A pattern (template) for the output of tree-structured array of comments
+ * @param array $comments
+ * @return string
+ */
+function commentsPattern(array $comments): string
+{
+
+    $name = htmlspecialchars($comments['name'], ENT_QUOTES);
+    $content = htmlspecialchars($comments['content'], ENT_QUOTES);
+    $date = $comments['date'];
+    $id = $comments['id'];
+
+    $pattern = <<<HEREDOC
+<div class="comments">
+                <div class="comment-added-by">
+                    By <b>%s</b> on %s
+</div>
+<hr>
+<div class="comment-content">
+    <p>%s</p>
+</div>
+<hr>
+<div class="comments-reply-button">
+    <button onclick="document.getElementById('formreply-%d').style.display='';">
+        Reply
+    </button>
+</div>
+</div>
+<div class="reply-form" style="display: none" id="formreply-%d">
+    <div>
+        <form action="index.php" method="post">
+            <div class="reply-name">
+                <input type="text" name="name" placeholder="Your name" size="53">
+            </div>
+            <div class="reply-comment">
+                <textarea rows="2" cols="50" name="content" placeholder="Enter Comment"></textarea>
+            </div>
+            <div class="reply-submit">
+                <button type="submit" name="submit-reply" id="submit-reply">Submit</button>
+            </div>
+            <input type="hidden" name="parent_id" value="%d">
+        </form>
+    </div>
+</div>
+HEREDOC;
+
+    $pattern = sprintf($pattern, $name, $date, $content, $id, $id, $id);
+
+    if(isset($comments['children'])){
+        $pattern .= '<ul>'.showComments($comments['children']).'</ul>';
+    }
+
+    return $pattern;
+
+}
+
+/**
+ * Recursive function for the output of prepared pattern
+ * @param array $tree
+ * @return string
+ */
+function showComments(array $tree): string
+{
+
+    $string = '';
+
+    foreach($tree as $item){
+        $string .= commentsPattern($item);
+    }
+
+    return $string;
 
 }
 
