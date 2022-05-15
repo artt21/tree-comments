@@ -45,7 +45,6 @@
     </div>
     <div class="footer">
         <script>
-
         </script>
     </div>
 </div>

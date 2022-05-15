@@ -1,14 +1,14 @@
 <?php
 
+date_default_timezone_set("America/New_York");
+
 /**
- * Collecting all records from database
- * @return array
+ * Collecting all records from "comments" database
  */
 function getComments(): array
 {
 
     $pdo = new PDO("mysql:host=localhost;dbname=comments;charset=utf8", "root", "");
-
 
     $sql = "SELECT * FROM comments ORDER BY parent_id ASC, `date` ASC";
     $statement = $pdo->query($sql);
@@ -23,19 +23,19 @@ function getComments(): array
 
 /**
  * Sorting out comments in array to differentiate between parent comments and children. Making tree structure.
- * @param array $comments
- * @return array
  */
-function sortComments(array $comments): array
+function sortComments(array $comments, ?int $parentID = null): array
 {
 
     $arr = [];
 
-    foreach ($comments as $id => &$comment) {
-        if ($comment['parent_id'] === null){
-            $arr[$id] = &$comment;
-        }else{
-            $comments[$comment['parent_id']]['children'][$id] = &$comment;
+    foreach($comments as $comment){
+        if($comment['parent_id'] == $parentID){
+            $children = sortComments($comments, $comment['id']);
+            if ($children){
+                $comment['children'] = $children;
+            }
+            $arr[] = $comment;
         }
     }
 
@@ -44,22 +44,48 @@ function sortComments(array $comments): array
 }
 
 /**
+ * Counting how much time ago a commentary was left by user
+ */
+function dateInterval(DateTime $originDate): string
+{
+
+    $currentDate = date_create(date('Y-m-d H:i:s'));
+    $interval = date_diff($originDate, $currentDate);
+
+    if($interval->format('%y')){
+        $date = $interval->format("%y year(s) ago");
+    } elseif ($interval->format('%m')){
+        $date = $interval->format('%m month(s) ago');
+    } elseif ($interval->format('%d')){
+        $date = $interval->format('%d day(s) ago');
+    } elseif ($interval->format('%h') >= 1){
+        $date = $interval->format('%h hour(s) ago');
+    } elseif($interval->format('%i') < 1 ){
+        $date = $interval->format('just now');
+    } else{
+        $date = $interval->format('%i minute(s) ago');
+    }
+
+    return $date;
+
+}
+
+/**
  * A pattern (template) for the output of tree-structured array of comments
- * @param array $comments
- * @return string
  */
 function commentsPattern(array $comments): string
 {
 
     $name = htmlspecialchars($comments['name'], ENT_QUOTES);
     $content = htmlspecialchars($comments['content'], ENT_QUOTES);
-    $date = $comments['date'];
     $id = $comments['id'];
+
+    $date = dateInterval(date_create($comments['date']));
 
     $pattern = <<<HEREDOC
 <div class="comments">
                 <div class="comment-added-by">
-                    By <b>%s</b> on %s
+                    By <b>%s</b> <i>%s</i>
 </div>
 <hr>
 <div class="comment-content">
@@ -93,7 +119,7 @@ HEREDOC;
     $pattern = sprintf($pattern, $name, $date, $content, $id, $id, $id);
 
     if(isset($comments['children'])){
-        $pattern .= '<ul>'.showComments($comments['children']).'</ul>';
+        $pattern .= '<ul>' . showComments($comments['children']) . '</ul>';
     }
 
     return $pattern;
@@ -102,8 +128,6 @@ HEREDOC;
 
 /**
  * Recursive function for the output of prepared pattern
- * @param array $tree
- * @return string
  */
 function showComments(array $tree): string
 {
@@ -120,9 +144,6 @@ function showComments(array $tree): string
 
 /**
  * Adding records from the form to database
- * @param string $name
- * @param string $content
- * @param int|null $parentId
  */
 function addComment(string $name, string $content, ?int $parentId = null): void
 {
@@ -140,7 +161,6 @@ function addComment(string $name, string $content, ?int $parentId = null): void
 
 /**
  * Validation of records put into the form
- * @return array
  */
 function dataValidation(): array
 {
@@ -149,7 +169,7 @@ function dataValidation(): array
 
     $name = trim($_POST['name']);
     $content = trim($_POST['content']);
-    $allowedSymbols = "/^[a-zA-Z0-9-',.:!? ]*$/";
+    $allowedSymbols = "/^[a-zA-Z0-9-',.:!_? ]*$/";
     $nameLength = 50;
     $contentLength = 1000;
 
